@@ -1,0 +1,23 @@
+.header {
+    font-family: 'paperlogy_bold';
+    background: #FFB38E;
+    height: var(--header-height);
+    display: flex;
+}
+
+.brand {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon {
+    color: #7C444F;
+}
+
+.site-name {
+    color: #7C444F;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
