@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import styles from './styles.module.css';
 import localFont from 'next/font/local';
 import Header from "./_components/Header";
 import Sidebar from "./_components/SideBar";
@@ -29,12 +30,12 @@ export default function RootLayout({
     <html lang="ko" className={paperlogy.className}>
       <body>
         <Header/>
-        <div style={{ display: 'flex' }}>
+        <section className={styles.content_section}>
           <Sidebar/>
-          <div style={{ flex: 1 }}>
+          <main>
             {children}
-          </div>
-        </div>
+          </main>
+        </section>
       </body>
     </html>
   );

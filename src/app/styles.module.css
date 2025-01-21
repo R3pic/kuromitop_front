@@ -1,4 +1,8 @@
-.main {
+.page {
   background: var(--background);
   height: calc(100vh - var(--header-height));
+}
+
+.content_section {
+  display: flex;
 }

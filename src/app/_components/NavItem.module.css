@@ -1,0 +1,27 @@
+.navigation_item {
+    padding: 0.5rem;
+    color: var(--text-secondary);
+    align-items: center;
+    display: flex;
+    border-bottom: 2px solid #DDDDDD;
+}
+
+.navigation_item:nth-last-child(2) {
+    border-bottom: none;
+}
+
+
+.navigation_item:hover .navigation_icon,
+.navigation_item:hover .navigation_name {
+    transform: scale(1.05);
+}
+
+.navigation_icon, .navigation_name {
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.navigation_name {
+    padding-left: 10px;
+    font-size: medium;
+}

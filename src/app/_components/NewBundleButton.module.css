@@ -1,0 +1,26 @@
+.new_bundle_btn {
+    align-self: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    border: 4px dashed var(--color-primary);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new_bundle_btn:hover {
+    background-color: rgba(100, 100, 100, 0.1);
+}
+
+.new_bundle_btn:hover .new_bundle_btn_text {
+    transform: scale(0.95);
+}
+
+.new_bundle_btn_text {
+    font-family: 'paperlogy_bold';
+    font-size: larger;
+    color: var(--text-primary);
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+

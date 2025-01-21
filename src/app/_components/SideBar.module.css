@@ -1,4 +1,29 @@
-.side-bar {
+.side_bar {
+    background: var(--background);
     flex: 0 0 16rem;
     height: calc(100vh - var(--header-height));
+    display: flex;
+}
+
+.navigation {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation_title {
+    font-family: 'paperlogy_bold';
+    margin: 1rem 0 1rem 1rem;
+    flex-shrink: 1;
+    color: var(--text-primary);
+}
+
+.navigation_list {
+    background: #EEEEEE;
+    margin: 0rem 1rem 2rem 1rem;
+    padding: 0.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }

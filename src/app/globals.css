@@ -1,6 +1,16 @@
 :root {
   --header-height: 4rem;
+
+  /* 색상 관련 변수 */
   --background: #FFCF9D;
+
+  --color-primary: #FFCF9D;
+  --color-secondary: #FFDAB9;
+  --color-accent: #FF8C42;
+
+  --text-primary: #7C444F;
+  --text-secondary: #A06A73;
+  --text-muted: #D3B2B7;
 }
 
 html,
@@ -14,6 +24,10 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  flex: 1;
 }
 
 * {
