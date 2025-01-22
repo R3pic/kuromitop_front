@@ -16,8 +16,29 @@
     color: #7C444F;
 }
 
-.site-name {
+.siteName {
     color: #7C444F;
     font-weight: 800;
     font-size: 1.5rem;
+}
+
+.toolBar {
+    display: flex;
+    margin-left: auto;
+    margin-right: 4rem;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profileIcon {
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.userName {
+    margin-left: 1rem;
 }
