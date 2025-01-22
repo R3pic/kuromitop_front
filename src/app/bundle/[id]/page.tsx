@@ -15,6 +15,7 @@ export default function bundlePage() {
             artist: "가수이름1",
             memoPreview: "최근들어 무한 반복하고 있는 노래 개좋음 ;; ",
             memoCount: 5,
+            href: '/music/zxcv?user=유저아이디디'
         },
         {
             thumbnail: '/profile.webp',
@@ -22,6 +23,7 @@ export default function bundlePage() {
             artist: "가수이름1",
             memoPreview: "최근들어 무한 반복하고 있는 노래 개좋음 ;; ",
             memoCount: 5,
+            href: '/music/zxcv?user=유저아이디디'
         },
         {
             thumbnail: '/profile.webp',
@@ -29,6 +31,7 @@ export default function bundlePage() {
             artist: "가수이름1",
             memoPreview: "최근들어 무한 반복하고 있는 노래 개좋음 ;; ",
             memoCount: 5,
+            href: '/music/zxcv?user=유저아이디디'
         },
     ];
 
@@ -41,13 +44,14 @@ export default function bundlePage() {
                 <NewMusicButton />
             </div>
             <div className={styles.musicList}>
-                {musicList.map(({ thumbnail, name, artist, memoPreview, memoCount}, i) => 
+                {musicList.map(({ thumbnail, name, artist, memoPreview, memoCount, href}, i) => 
                 <MemoItem key={i}
                     thumbnail={thumbnail}
                     name={name}
                     artist={artist}
                     memoPreview={memoPreview}
                     memoCount={memoCount}
+                    href={href}
                 />)}
             </div>
         </div>
