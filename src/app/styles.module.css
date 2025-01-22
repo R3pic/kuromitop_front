@@ -1,8 +1,94 @@
+/* 레이아웃 */
+.content_section {
+  display: flex;
+}
+
+/* 페이지 */
 .page {
   background: var(--background);
   height: calc(100vh - var(--header-height));
 }
 
-.content_section {
+.content_grid {
+  display: grid;
+}
+
+.recentMemoSection {
+  color: var(--text-primary);
+  padding: 1rem;
+}
+
+.recentMemoTitle {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.memoList {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.memoItem {
+  background: var(--color-secondary);
+  display: flex;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.memoItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail_icon {
+  margin: 0.5rem;
+}
+
+.musicInfo {
+  min-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+.musicName {
+  font-size: 1rem;
+  max-width: 256px;
+  white-space: nowrap;
+  overflow: hidden;  
+  text-overflow: ellipsis;
+}
+
+.musicArtist {
+  font-size: 0.9rem;
+}
+
+.memoInfo {
+  background: rgba(250, 250, 250, 0.5);
+  border-radius: 1rem;
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.memoPreview {
+  font-size: 0.9rem;
+  max-width: 32rem;
+  display: -webkit-box;        /* Flex 기반의 레이아웃 */
+  line-clamp: 2;
+  -webkit-line-clamp: 2;       /* 표시할 줄 수 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;            /* 넘치는 부분 숨김 */
+}
+
+.memoCount {
+  display: flex;
+}
+
+.memoCountText {
+  margin-left: 0.3rem;
 }
