@@ -1,6 +1,9 @@
+
+
 import Image from "next/image";
 import { MessageCircle } from 'lucide-react';
 import styles from './MemoItem.module.css';
+import Link from "next/link";
 
 interface MemoItemProps {
     thumbnail: string;
@@ -8,11 +11,12 @@ interface MemoItemProps {
     artist: string;
     memoPreview: string;
     memoCount: number;
+    href: string;
   }
   
-export default function MemoItem({ thumbnail, name, artist, memoPreview, memoCount }: MemoItemProps) {
+export default function MemoItem({ thumbnail, name, artist, memoPreview, memoCount, href }: MemoItemProps) {
     return (
-      <div className={styles.memoItem}>
+      <Link className={styles.memoItem} href={href}>
           <Image className={styles.thumbnail_icon} src={thumbnail} alt={name} width={64} height={64} />
           <div className={styles.musicInfo}>
             <h3 className={styles.musicName}>{ name }</h3>
@@ -25,6 +29,6 @@ export default function MemoItem({ thumbnail, name, artist, memoPreview, memoCou
               <span className={styles.memoCountText}>{ memoCount }</span>
             </div>
           </div>
-      </div>
+      </Link>
     );
   }
