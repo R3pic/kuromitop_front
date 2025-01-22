@@ -4,9 +4,9 @@ import NewBundleButton from './NewBundleButton';
 
 export default function Sidebar() {
     const mocks = [
-        { name: "꾸러미 이름1", href: '/' },
-        { name: "꾸러미 이름2", href: '/' },
-        { name: "꾸러미 이름3", href: '/' }
+        { name: "꾸러미 이름1", href: '/bundle/1' },
+        { name: "꾸러미 이름2", href: '/bundle/2' },
+        { name: "꾸러미 이름3", href: '/bundle/3' }
     ]
 
     return (

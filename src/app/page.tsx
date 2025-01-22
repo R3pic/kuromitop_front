@@ -1,9 +1,8 @@
-import Image from "next/image";
-import { MessageCircle } from 'lucide-react';
 import styles from "./styles.module.css";
+import MemoItem from "./_components/MemoItem";
 
 export default function Home() {
-  const memoList: MemoItemProps[] = [
+  const memoList = [
     {
       thumbnail: '/profile.webp',
       name: "노래제목이 아주아주아주아주 길어진다면 어떻게 될까요",
@@ -49,42 +48,15 @@ export default function Home() {
           <div className={styles.memoList}>
             {memoList.map(({thumbnail, name, artist, memoPreview, memoCount}, i) => 
             <MemoItem key={i}
-            thumbnail={thumbnail}
-            name={name}
-            artist={artist}
-            memoPreview={memoPreview}
-            memoCount={memoCount}
+              thumbnail={thumbnail}
+              name={name}
+              artist={artist}
+              memoPreview={memoPreview}
+              memoCount={memoCount}
             />)}
           </div>
         </section>
       </div>
-    </div>
-  );
-}
-
-interface MemoItemProps {
-  thumbnail: string;
-  name: string;
-  artist: string;
-  memoPreview: string;
-  memoCount: number;
-}
-
-function MemoItem({ thumbnail, name, artist, memoPreview, memoCount }: MemoItemProps) {
-  return (
-    <div className={styles.memoItem}>
-        <Image className={styles.thumbnail_icon} src={thumbnail} alt={name} width={64} height={64} />
-        <div className={styles.musicInfo}>
-          <h3 className={styles.musicName}>{ name }</h3>
-          <p className={styles.musicArtist}>{ artist }</p>
-        </div>
-        <div className={styles.memoInfo}>
-          <p className={styles.memoPreview}>{ memoPreview }</p>
-          <div className={styles.memoCount}>
-            <MessageCircle size={18}/>
-            <span className={styles.memoCountText}>{ memoCount }</span>
-          </div>
-        </div>
     </div>
   );
 }
