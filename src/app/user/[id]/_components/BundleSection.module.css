@@ -1,0 +1,53 @@
+.bundleSection {
+    border-top: 3px solid var(--color-secondary);
+}
+
+.bundleTitle {
+    font-size: 1.3rem;
+    margin: 1rem 0 1rem 0;
+}
+
+.bundleGrid {
+    max-height: calc(100vh - 400px - var(--header-height));
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1rem 1rem;
+}
+
+.bundleGrid::-webkit-scrollbar {
+  width: 10px;
+}
+
+.bundleGrid::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+}
+.bundleGrid::-webkit-scrollbar-track {
+  background-color: grey;
+}
+
+.bundleItem {
+  position: relative;
+  text-align: center;
+  align-content: center;
+  background: var(--color-secondary);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bundleItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.bundleIcon {
+  position: absolute;
+  left: 10;
+  top: 10;
+}
+
+.bundleName {
+  font-family: 'paperlogy_bold';
+}
