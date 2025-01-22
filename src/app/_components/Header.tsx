@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 export default function Header() {
     const username = '유저이름';
+    const userhref = '/user/1';
 
     return (
         <header className={styles.header}>
@@ -16,7 +17,7 @@ export default function Header() {
             <div className={styles.toolBar}>
                 <div className={styles.profile}>
                     <Image className={styles.profileIcon} src={'/profile.webp'} width={50} height={50} alt={'profile icon'}/>
-                    <span className={styles.userName}>{ username }</span>
+                    <Link className={styles.userName} href={userhref}>{ username }</Link>
                 </div>
             </div>
         </header>
