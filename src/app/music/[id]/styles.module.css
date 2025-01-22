@@ -1,0 +1,76 @@
+.page {
+  background: var(--background);
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  padding-right: 2rem;
+}
+
+.musicSection {
+    background: var(--color-secondary);
+    display: flex;
+    margin: 1rem 0 1rem 0;
+}
+
+.thumbnail {
+    padding: 1rem;
+}
+
+.musicInfo {
+    margin-left: 2rem;
+}
+
+.musicName {
+    margin: 1rem 0 1rem 0;
+}
+
+.artist {
+    font-size: 1rem;
+}
+
+.memoSection {
+    background: var(--color-secondary);
+    display: flex;
+    flex-grow: 1;
+    margin-bottom: 2rem;
+    overflow-y: auto;
+}
+
+.memoList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.memoSection::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+.memoSection::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+}
+.memoSection::-webkit-scrollbar-track {
+  background-color: grey;
+}
+
+.memoItem {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background: #EEEEEE;
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 1rem;
+}
+
+.memo {
+    margin-bottom: 1rem;
+}
+
+.dateText {
+    color: #777777;
+    font-size: small;
+    margin-bottom: 0.5rem;
+}
