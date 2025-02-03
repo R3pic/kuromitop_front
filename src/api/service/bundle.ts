@@ -1,27 +1,14 @@
-import { cookies } from "next/headers";
-import { BASE_URL } from "../constants";
 import { UUID } from "crypto";
-import { forbidden } from "next/navigation";
 import { Track } from "../types";
+import { APIfetch } from "../fetch";
 
-export async function fetchBundle(bundleId: UUID): Promise<{
+type BundleData = {
     title: string,
     tracks: Track[],
-}> {
-    const cookieStore = await cookies();
+}
 
-    const accessToken = cookieStore.get('access_token');
+export async function fetchBundle(bundleId: UUID): Promise<BundleData> {
+    const response = await APIfetch<BundleData>(`/bundles/${bundleId}/tracks`, { method: 'GET', auth: true });
 
-    const response = await fetch(`${BASE_URL}/bundles/${bundleId}/tracks`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${accessToken?.value}`
-        }
-    });
-
-    if (!response.ok)
-        forbidden();
-
-    return response.json();
+    return response
 }

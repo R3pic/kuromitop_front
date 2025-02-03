@@ -26,7 +26,7 @@ export default async function bundlePage({ params }: PageProps<{ id: UUID }>) {
                     artist={artist}
                     comment_preview={recent_comment.content}
                     comment_count={comment_count}
-                    href={`track/${id}`}
+                    href={`/track/${id}`}
                 />)}
             </div>
         </div>

@@ -19,3 +19,14 @@ export type Bundle = {
     id: UUID,
     title: string,
 }
+
+export type Profile = {
+    id: number,
+    user_id: number,
+    nickname: string,
+    thumbnail: string,
+    introduction: string,
+    created_at: Date,
+    updated_at: Date,
+    bundleList: Bundle[]
+};
