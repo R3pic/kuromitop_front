@@ -1,0 +1,78 @@
+.login_layout {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.formbox {
+    background: var(--color-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align: center;
+  }
+  
+.login_title {
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.loginbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.loginbox label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+
+.loginbox footer {
+    margin-top: 1.5rem;
+  }
+  
+
+.input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid var(--text-muted);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: white;
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+
+.loginBtn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #e07a37;
+}
+  

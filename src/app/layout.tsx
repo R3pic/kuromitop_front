@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import styles from './styles.module.css';
+
 import localFont from 'next/font/local';
-import Header from "./_components/Header";
-import Sidebar from "./_components/SideBar";
 
 const paperlogy = localFont({
   src:  "../../public/fonts/Paperlogy-4Regular.woff2",
@@ -29,13 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={paperlogy.className}>
       <body>
-        <Header/>
-        <section className={styles.content_section}>
-          <Sidebar/>
-          <main>
-            {children}
-          </main>
-        </section>
+        { children }
       </body>
     </html>
   );

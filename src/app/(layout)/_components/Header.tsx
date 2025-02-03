@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function Header() {
     const username = '유저이름';
-    const userhref = '/user/1';
+    const userhref = '/user/repic';
 
     return (
         <header className={styles.header}>

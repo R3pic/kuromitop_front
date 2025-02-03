@@ -1,0 +1,21 @@
+import { UUID } from "crypto"
+
+export type Comment = {
+    id: number,
+    content: string,
+    created_at: Date,
+}
+
+export type Track = {
+    id: number,
+    title: string,
+    artist: string,
+    thumbnail: string,
+    comment_count: number,
+    recent_comment: Comment
+}
+
+export type Bundle = {
+    id: UUID,
+    title: string,
+}
