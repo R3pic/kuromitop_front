@@ -5,9 +5,10 @@ import { BASE_URL } from "./constants";
 type FetchOption = {
     auth: boolean,
     method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
+    body?: unknown,
 }
 
-export async function APIfetch<T>(endpoint: string, options: FetchOption): Promise<T> {
+export async function APIfetch(endpoint: string, options: FetchOption): Promise<Response> {
     const headers: Record<string, string> = {
         'Content-Type': 'application/json',
     }
@@ -23,16 +24,14 @@ export async function APIfetch<T>(endpoint: string, options: FetchOption): Promi
         headers['Authorization'] = `Bearer ${accessToken.value}`;
     }
 
+    const body = options.body ? JSON.stringify(options.body) : undefined;
+
     const response = await fetch(`${BASE_URL}${endpoint}`, {
         method: options.method,
         headers,
+        body,
         credentials: 'include'
     });
-
-    const data = await response.json();
-
-    if (!response.ok)
-        console.error(data);
 
     if (response.status === 401) {
         // 서버 사이드에서 새로 발급 받은 액세스 토큰을 클라이언트에 적용하는 것에 패배했다.....
@@ -74,5 +73,5 @@ export async function APIfetch<T>(endpoint: string, options: FetchOption): Promi
         notFound();
     }
 
-    return data;
+    return response;
 }

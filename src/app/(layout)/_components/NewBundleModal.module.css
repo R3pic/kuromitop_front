@@ -1,0 +1,89 @@
+.modal_overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modal_overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.show .modal_box {
+    transform: scale(1);
+}
+
+.modal_box {
+    background: white;
+    padding: 4rem;
+    border-radius: 8px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+.new_bundle_form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.new_bundle_form h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.input_label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+.bundle_name_input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.bundle_name_input:focus {
+    outline: none;
+    border-color: var(--text-primary);
+}
+
+.bundle_visible_check_box {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+}
+
+.new_bundle_accept_btn {
+    background: var(--color-accent);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.new_bundle_accept_btn:hover {
+    background: var(--text-primary);
+}
+
+.new_bundle_accept_btn:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+}
