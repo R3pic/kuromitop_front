@@ -1,6 +1,5 @@
-import { Login, loginSchema } from "@/api/service/login";
+import { Login, loginSchema } from "@/app/api/service/login";
 import { redirect, RedirectType } from "next/navigation";
-
 
 export async function loginAction(_: unknown, formData: FormData) {
     try { 

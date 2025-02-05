@@ -1,13 +1,13 @@
 import styles from "./styles.module.css";
 import TrackItem from "./_components/MemoItem";
-import { fetchRecentTracks } from "@/api/service/recent";
+import { fetchRecentTracks } from "@/app/api/service/recent";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
   const cookieStore = await cookies();
   if (!cookieStore.get('access_token'))
-    redirect('login');
+    redirect('/login');
 
   const trackList = await fetchRecentTracks();
 

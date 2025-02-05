@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import styles from './styles.module.css';
 import React from 'react';
-import { fetchTrackDetail } from '@/api/service/tracks';
+import { fetchTrackDetail } from '@/app/api/service/tracks';
 import { PageProps } from '@/common/page-props';
+import { formatDateString } from '@/utils/string';
 
 export default async function MusicPage({ params }: PageProps<{ id: string }>) {
     const { id } = await params;
@@ -44,7 +45,7 @@ function MemoItem({ date, memo }: Props) {
     return (
         <div className={styles.memoItem}>
             <p className={styles.memo}>{ memo }</p>
-            <span className={styles.dateText}>{ date.toISOString() }</span>
+            <span className={styles.dateText}>{ formatDateString(date) }</span>
         </div>
     );
 }

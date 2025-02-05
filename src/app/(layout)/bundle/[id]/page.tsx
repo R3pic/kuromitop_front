@@ -2,15 +2,13 @@ import TrackItem from '@/app/(layout)/_components/MemoItem';
 import styles from './styles.module.css';
 import NewMusicButton from './_components/NewMusicButton';
 import { PageProps } from '@/common/page-props';
-import { fetchBundle } from '@/api/service/bundle';
+import { fetchBundledetail } from '@/app/api/service/bundle-detail';
 import { UUID } from 'crypto';
 
 export default async function bundlePage({ params }: PageProps<{ id: UUID }>) {
     const { id } = await params;
 
-    const data = await fetchBundle(id);
-
-    console.log(data);
+    const data = await fetchBundledetail(id);
 
     return (
         <div className={styles.page}>

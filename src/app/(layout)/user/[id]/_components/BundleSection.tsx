@@ -1,7 +1,7 @@
 import { Package } from "lucide-react";
 import Link from "next/link";
 import styles from './BundleSection.module.css';
-import { Bundle } from "@/api/types";
+import { Bundle } from "@/app/api/types";
 
 interface Props {
     bundleList: Bundle[];

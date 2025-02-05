@@ -7,8 +7,7 @@ type BundleData = {
     tracks: Track[],
 }
 
-export async function fetchBundle(bundleId: UUID): Promise<BundleData> {
+export async function fetchBundledetail(bundleId: UUID): Promise<BundleData> {
     const response = await APIfetch<BundleData>(`/bundles/${bundleId}/tracks`, { method: 'GET', auth: true });
-
     return response
 }

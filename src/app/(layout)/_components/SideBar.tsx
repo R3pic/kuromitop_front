@@ -2,17 +2,19 @@ import style from './SideBar.module.css';
 import NavItem from './NavItem';
 import NewBundleButton from './NewBundleButton';
 import { cookies } from 'next/headers';
-import { fetchProfile } from '@/api/service/profile';
+import { Bundle } from '@/app/api/types';
 
-export default async function Sidebar() {
+interface SidebarProps {
+    bundleList: Bundle[]
+}
+
+export default async function Sidebar({ bundleList }: SidebarProps) {
     const cookieStore = await cookies();
 
     let isLogined = false;
 
     if (cookieStore.get('access_token'))
         isLogined = true;
-
-    const data = await fetchProfile('repic');
 
     return (
         <>
@@ -22,7 +24,7 @@ export default async function Sidebar() {
                         내 꾸러미
                     </div>
                     <div className={style.navigation_list}>
-                        {data.bundleList.map(({ title, id }, i) => 
+                        {bundleList.length > 0 && bundleList.map(({ title, id }, i) => 
                             <NavItem key={i} href={`/bundle/${id}`} name={title} />
                         )}
                         <NewBundleButton />

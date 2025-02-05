@@ -22,6 +22,7 @@ export type Bundle = {
 
 export type Profile = {
     id: number,
+    username: string,
     user_id: number,
     nickname: string,
     thumbnail: string,

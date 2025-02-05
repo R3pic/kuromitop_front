@@ -3,7 +3,7 @@ import BundleSection from './_components/BundleSection';
 import LifeMusicSection from './_components/LifeMusicSection';
 import Profile from './_components/Profile';
 import { PageProps } from '@/common/page-props';
-import { fetchProfile } from '@/api/service/profile';
+import { fetchProfile } from '@/app/api/service/profile';
 
 export default async function userPage({ params }: PageProps<{ id: string }>) {
     const { id } = await params;
@@ -37,8 +37,8 @@ export default async function userPage({ params }: PageProps<{ id: string }>) {
         <div className={styles.page}>
             <div className={styles.section}>
                 <Profile
-                    profile={data.thumbnail}
-                    name={data.nickname ?? id}
+                    profile={data.thumbnail ?? '/profile.webp'}
+                    name={data.nickname ?? data.username}
                     description={data.introduction ?? '소개글이 없습니다.'}
                 />
                 <LifeMusicSection musicList={data.topMusicList}/>
