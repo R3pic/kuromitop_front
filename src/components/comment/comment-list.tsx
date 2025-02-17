@@ -1,6 +1,5 @@
 import { Comment } from '@/types';
-import {Card} from '@/components/ui/card.tsx';
-import {formatDateString} from '@/lib/string-utils.ts';
+import CommentCard from '@/components/comment/comment-card.tsx';
 
 interface Props {
   comments: Comment[]
@@ -9,12 +8,14 @@ interface Props {
 export default function CommentList({ comments }: Props) {
   return (
     <div className='h-full overflow-y-scroll flex flex-col p-4 space-y-4 items-center bg-muted'>
-      {comments.map((comment) => (
-        <Card className='w-1/2 p-2'>
-          <p className='mb-2 leading-5 line-clamp-2 '>{ comment.content }</p>
-          <p className='text-right text-xs text-muted-foreground'>{ formatDateString(comment.created_at) }</p>
-        </Card>
-      ))}
+      {comments.length > 0
+        ? comments.map((comment, i) => (
+        <CommentCard key={i} comment={comment} />
+      )) : (
+        <h4 className='scroll-m-20 text-xl font-semibold tracking-tight'>
+          코멘트가 존재하지 않습니다.
+        </h4>
+        )}
     </div>
   );
 }

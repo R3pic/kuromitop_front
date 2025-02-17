@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar.tsx';
-import {NavLink} from 'react-router';
+import {NavLink, useNavigate} from 'react-router';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,15 +19,25 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu.tsx';
 import {Separator} from '@/components/ui/separator.tsx';
-import CreateBundleButton from '@/components/sidebar/create-bundle-button.tsx';
+import CreateBundleButton from '@/components/bundle/create-bundle-button.tsx';
 import {Bundle} from '@/types';
+import axiosInstance from '@/api/api.ts';
 
 export function NavMain({
   bundles,
 }: {
   bundles: Bundle[]
 }) {
+  const navigate = useNavigate();
   const { isMobile } = useSidebar();
+
+  async function onBundleDeleteClick(bundleId: string) {
+    const response = await axiosInstance.delete(`bundles/${bundleId}`);
+
+    if (response.status === 204) {
+      navigate(0);
+    }
+  }
 
   return (
     <SidebarGroup>
@@ -62,7 +72,7 @@ export function NavMain({
                   <span>꾸러미 정보 수정</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onBundleDeleteClick(item.id)}>
                   <Trash2 className="text-muted-foreground" />
                   <span>꾸러미 삭제</span>
                 </DropdownMenuItem>

@@ -10,7 +10,7 @@ interface Props {
 
 export default function TrackItem({ track }: Props) {
   return (
-    <NavLink to={`/track/${track.id}`}>
+    <NavLink className='w-full' to={`/track/${track.id}`}>
       <Card className='rounded-none flex p-2'>
         <Avatar className='rounded-none size-14 mr-2'>
           <AvatarImage className='object-cover aspect-square' src={track.thumbnail} alt={'trackThumbnail'} />
