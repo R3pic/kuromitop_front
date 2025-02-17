@@ -13,26 +13,25 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar.tsx"
 import {NavLink} from 'react-router';
+import axiosInstance from '@/api/api.ts';
+import {useEffect, useState} from 'react';
+import {Bundle, User} from '@/types';
 
-const data = {
-  user: {
-    name: "r3pic",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  bundles: [
-    {
-      title: '꾸러미이름1',
-      url: '/home',
-    },
-    {
-      title: '꾸러미이름2',
-      url: '/home'
+export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+  const [user, setUser] = useState<User | null>(null);
+  const [bundles, setBundles] = useState<Bundle[]>([]);
+
+  useEffect(() => {
+    async function fetch() {
+      const response = await axiosInstance.get('/users/me');
+      const data = response.data;
+      setUser(data.user);
+      setBundles(data.bundles);
     }
-  ],
-}
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    void fetch();
+  }, []);
+
   return (
     <Sidebar variant="inset" {...props} >
       <SidebarHeader>
@@ -40,8 +39,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <NavLink to='/home'>
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <PackageOpenIcon className="size-7" />
+                <div
+                  className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <PackageOpenIcon className="size-7"/>
                 </div>
                 <div className="grid flex-1 text-left text-2xl leading-tight">
                   <span className="truncate font-semibold">꾸러미탑</span>
@@ -52,10 +52,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain bundles={data.bundles} />
+        <NavMain bundles={bundles}/>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user}/>
       </SidebarFooter>
     </Sidebar>
   )

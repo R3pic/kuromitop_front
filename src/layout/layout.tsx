@@ -7,7 +7,7 @@ export default function Layout() {
     <div className='min-w-screen min-h-screen bg-background flex items-center justify-center'>
       <SidebarProvider>
         <AppSidebar />
-        <main className='flex flex-col py-5'>
+        <main className='w-full flex flex-col py-5'>
           <Outlet/>
         </main>
       </SidebarProvider>

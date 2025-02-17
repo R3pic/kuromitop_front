@@ -4,6 +4,9 @@ import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {Input} from '@/components/ui/input.tsx';
 import {Button} from '@/components/ui/button.tsx';
+import axiosInstance from '@/api/api.ts';
+import {useState} from 'react';
+import {useNavigate} from 'react-router';
 
 const formSchema = z.object({
   username: z.string({
@@ -21,12 +24,37 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function RegisterForm() {
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const navigate = useNavigate();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: '',
+      password: '',
+    },
   })
 
-  function onSubmit(value: FormSchema) {
-    console.log(value);
+  async function onSubmit(value: FormSchema) {
+    const res = await axiosInstance.post('/auth/register', value);
+
+    setUsernameErrorMessage('');
+    setPasswordErrorMessage('');
+
+    if (res.status === 400) {
+      setUsernameErrorMessage('벨리데이션 에러');
+      setPasswordErrorMessage('벨리데이션 에러');
+      return;
+    }
+
+    if (res.status === 409) {
+      setUsernameErrorMessage(res.data.message);
+      return;
+    }
+
+    if (res.status === 201) {
+      navigate(0);
+    }
   }
 
   return (
@@ -42,7 +70,7 @@ export default function RegisterForm() {
                 <Input placeholder='아이디' {...field} />
               </FormControl>
               <FormDescription className='text-red-500'>
-                { form.formState.errors.username?.message }
+                { form.formState.errors.username?.message || usernameErrorMessage }
               </FormDescription>
             </FormItem>
           ))}
@@ -57,7 +85,7 @@ export default function RegisterForm() {
                 <Input type='password' placeholder='비밀번호' {...field} />
               </FormControl>
               <FormDescription className='text-red-500'>
-                { form.formState.errors.password?.message }
+                { form.formState.errors.password?.message || passwordErrorMessage }
               </FormDescription>
             </FormItem>
           ))}

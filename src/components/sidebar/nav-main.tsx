@@ -20,14 +20,12 @@ import {
 } from '@/components/ui/dropdown-menu.tsx';
 import {Separator} from '@/components/ui/separator.tsx';
 import CreateBundleButton from '@/components/sidebar/create-bundle-button.tsx';
+import {Bundle} from '@/types';
 
 export function NavMain({
   bundles,
 }: {
-  bundles: {
-    title: string,
-    url: string,
-  }[]
+  bundles: Bundle[]
 }) {
   const { isMobile } = useSidebar();
 
@@ -40,10 +38,10 @@ export function NavMain({
 
       <Separator className='m-1'/>
       <SidebarMenu>
-        {bundles.map((item) => (
-          <SidebarMenuItem>
+        {bundles.map((item, i) => (
+          <SidebarMenuItem key={i}>
             <SidebarMenuButton asChild>
-              <NavLink to={item.url}>
+              <NavLink to={`/bundle/${item.id}`}>
                 <span>{ item.title }</span>
               </NavLink>
             </SidebarMenuButton>

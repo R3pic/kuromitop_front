@@ -5,6 +5,8 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {Input} from '@/components/ui/input.tsx';
 import {Button} from '@/components/ui/button.tsx';
 import {useNavigate} from 'react-router';
+import axiosInstance from '@/api/api.ts';
+import {useState} from 'react';
 
 const formSchema = z.object({
   username: z.string({
@@ -18,8 +20,8 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function LoginForm() {
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,8 +30,18 @@ export default function LoginForm() {
     },
   })
 
-  function onSubmit(value: FormSchema) {
-    console.log(value);
+  const isValidationError = () =>
+    form.formState.errors.username?.message
+    || form.formState.errors.password?.message;
+
+  async function onSubmit(value: FormSchema) {
+    const res = await axiosInstance.post('/auth/login', value);
+
+    if (res.status === 400 || res.status === 401) {
+      setErrorMessage('아이디 또는 비밀번호가 잘못되었습니다.');
+      return;
+    }
+
     navigate('/home');
   }
 
@@ -39,7 +51,7 @@ export default function LoginForm() {
         <FormField
           control={form.control}
           name='username'
-          render={(({ field }) => (
+          render={(({field}) => (
             <FormItem>
               <FormLabel>아이디</FormLabel>
               <FormControl>
@@ -51,14 +63,14 @@ export default function LoginForm() {
         <FormField
           control={form.control}
           name='password'
-          render={(({ field }) => (
+          render={(({field}) => (
             <FormItem>
               <FormLabel>비밀번호</FormLabel>
               <FormControl>
                 <Input type='password' placeholder='비밀번호' {...field} />
               </FormControl>
-              <FormDescription>
-                추후 API로 비번 틀리면 이곳에 메세지 올리기
+              <FormDescription className='text-red-500'>
+                { isValidationError() && '아이디또는 비밀번호가 잘못되었습니다.' || errorMessage }
               </FormDescription>
             </FormItem>
           ))}
