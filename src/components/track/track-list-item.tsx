@@ -1,14 +1,14 @@
-import { Track } from '@/types';
+import { TrackItem } from '@/types';
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar.tsx';
 import {Card} from '@/components/ui/card.tsx';
 import {MessageCircle} from 'lucide-react';
 import {NavLink} from 'react-router';
 
 interface Props {
-  track: Track
+  track: TrackItem
 }
 
-export default function TrackItem({ track }: Props) {
+export default function TrackListItem({ track }: Props) {
   return (
     <NavLink className='w-full' to={`/track/${track.id}`}>
       <Card className='rounded-none flex p-2'>

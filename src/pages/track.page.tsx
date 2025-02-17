@@ -1,12 +1,14 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Comment, Track} from '@/types';
 import axiosInstance from '@/api/api.ts';
 import {useParams} from 'react-router';
 import {Separator} from '@/components/ui/separator.tsx';
 import CommentList from '@/components/comment/comment-list.tsx';
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar.tsx';
+import {OwnerContext} from '@/context/owner-context.ts';
 
 export default function TrackPage() {
+  const ownerContext = useContext(OwnerContext);
   const params = useParams();
   const [track, setTrack] = useState<Track | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -19,6 +21,7 @@ export default function TrackPage() {
 
       setTrack(data.track);
       setComments(data.comments);
+      ownerContext?.setOwnerId(data.track.owner);
     }
 
     void fetch();
@@ -42,7 +45,9 @@ export default function TrackPage() {
         <Separator />
       </div>
       <div className='flex-1 h-[36rem] max-h-[36rem] rounded-4xl overflow-y-scroll'>
-        <CommentList comments={comments} />
+        <CommentList
+          comments={comments}
+        />
       </div>
     </div>
   );

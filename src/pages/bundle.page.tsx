@@ -1,12 +1,12 @@
 import {useEffect, useRef, useState} from 'react';
-import {Track} from '@/types';
+import {TrackItem} from '@/types';
 import axiosInstance from '@/api/api.ts';
 import {useParams} from 'react-router';
 import TrackList from '@/components/track/track-list.tsx';
 
 export default function BundlePage() {
   const title = useRef<string>('');
-  const [tracks, setTracks] = useState<Track[]>([]);
+  const [tracks, setTracks] = useState<TrackItem[]>([]);
   const params = useParams();
 
   useEffect(() => {

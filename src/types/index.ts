@@ -1,9 +1,18 @@
+export interface Auth {
+  userId: number;
+  username: string;
+}
+
+export interface TrackItem extends Track {
+  recent_comment: RecentComment
+}
+
 export interface Track {
+  owner: number;
   id: number;
   title: string;
   artist: string;
   thumbnail: string;
-  recent_comment: RecentComment
 }
 
 export interface Comment {

@@ -14,19 +14,25 @@ import {
 } from "@/components/ui/sidebar.tsx"
 import {NavLink} from 'react-router';
 import axiosInstance from '@/api/api.ts';
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Bundle, User} from '@/types';
+import {AuthContext} from '@/context/user-context.ts';
 
 export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+  const authContext = useContext(AuthContext);
   const [user, setUser] = useState<User | null>(null);
   const [bundles, setBundles] = useState<Bundle[]>([]);
 
   useEffect(() => {
     async function fetch() {
       const response = await axiosInstance.get('/users/me');
-      const data = response.data;
-      setUser(data.user);
-      setBundles(data.bundles);
+      const { user, bundles } = response.data;
+      authContext?.setAuth({
+        userId: user.id,
+        username: user.name,
+      });
+      setUser(user);
+      setBundles(bundles);
     }
 
     void fetch();

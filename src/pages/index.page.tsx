@@ -1,10 +1,10 @@
 import TrackList from '@/components/track/track-list.tsx';
 import {useEffect, useState} from 'react';
 import axiosInstance from '@/api/api.ts';
-import {Track} from '@/types';
+import {TrackItem} from '@/types';
 
 export default function IndexPage() {
-  const [tracks, setTracks] = useState<Track[]>([]);
+  const [tracks, setTracks] = useState<TrackItem[]>([]);
 
   useEffect(() => {
     async function fetch() {
