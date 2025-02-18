@@ -5,7 +5,6 @@ import axiosInstance from '@/api/api.ts';
 
 export default function AxiosInterceptor() {
   const navigate = useRef(useNavigate());
-
   useEffect(() => {
     const requestInterceptor = axiosInstance.interceptors.request.use(
       (config) => {

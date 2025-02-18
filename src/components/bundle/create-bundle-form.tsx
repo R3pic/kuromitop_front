@@ -7,7 +7,10 @@ import {Button} from '@/components/ui/button.tsx';
 import axiosInstance from '@/api/api.ts';
 import {useState} from 'react';
 import {Switch} from '@/components/ui/switch.tsx';
-import {DialogClose} from '@/components/ui/dialog.tsx';
+
+interface Props {
+  callback?: () => void
+}
 
 const formSchema = z.object({
   title: z.string()
@@ -18,7 +21,7 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export default function CreateBundleForm() {
+export default function CreateBundleForm({ callback }: Props) {
   const [errorMessage, setErrorMessage] = useState('');
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -33,6 +36,10 @@ export default function CreateBundleForm() {
 
     if (res.status === 400) {
       setErrorMessage(res.data.message);
+    }
+
+    if (callback) {
+      callback();
     }
   }
 
@@ -59,7 +66,7 @@ export default function CreateBundleForm() {
           name='is_private'
           render={(({field}) => (
             <FormItem className='flex items-center space-x-2'>
-              <FormLabel>공개 여부</FormLabel>
+              <FormLabel>비공개</FormLabel>
               <FormControl>
                 <Switch
                   checked={field.value}
@@ -69,9 +76,7 @@ export default function CreateBundleForm() {
             </FormItem>
           ))}
         />
-        <DialogClose asChild>
-          <Button type='submit'>만들기</Button>
-        </DialogClose>
+        <Button type='submit'>만들기</Button>
       </form>
     </Form>
   )

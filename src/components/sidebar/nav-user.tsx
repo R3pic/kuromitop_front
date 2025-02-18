@@ -30,13 +30,21 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar.tsx"
 import {User} from '@/types';
+import {removeCookie} from '@/lib/cookie.ts';
+import {useNavigate} from 'react-router';
 
 export function NavUser({
   user,
 }: {
   user: User | null
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
+  const navigate = useNavigate();
+  function logout() {
+    removeCookie('access_token');
+    removeCookie('refresh_token');
+    navigate('/');
+  }
 
   return (
     <SidebarMenu>
@@ -99,7 +107,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>
               <LogOut />
               Log out
             </DropdownMenuItem>
