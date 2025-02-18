@@ -5,7 +5,7 @@ import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel} from
 import {Input} from '@/components/ui/input.tsx';
 import {Button} from '@/components/ui/button.tsx';
 import axiosInstance from '@/api/api.ts';
-import {useParams} from 'react-router';
+import {useNavigate, useParams} from 'react-router';
 
 interface Props {
   callback?: () => void;
@@ -21,7 +21,7 @@ type FormSchema = z.infer<typeof formSchema>;
 
 export default function NewTrackForm({ callback }: Props) {
   const params = useParams();
-
+  const navigate = useNavigate();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,6 +39,7 @@ export default function NewTrackForm({ callback }: Props) {
         if (callback) {
           callback();
         }
+        navigate(0);
       }
     }
 

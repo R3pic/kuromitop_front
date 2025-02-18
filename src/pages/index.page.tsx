@@ -1,7 +1,7 @@
-import TrackList from '@/components/track/track-list.tsx';
 import {useEffect, useState} from 'react';
 import axiosInstance from '@/api/api.ts';
 import {TrackItem} from '@/types';
+import RecentTrackList from '@/components/track/recent-track-list.tsx';
 
 export default function IndexPage() {
   const [tracks, setTracks] = useState<TrackItem[]>([]);
@@ -21,7 +21,7 @@ export default function IndexPage() {
     <>
       <div className='w-[48rem]'>
         <h2 className='scroll-m-20 border-b pb-2 mb-4 text-3xl font-semibold tracking-tight first:mt-0'>최근 발견된 메모</h2>
-        <TrackList tracks={tracks} />
+        <RecentTrackList tracks={tracks} />
       </div>
     </>
   )
