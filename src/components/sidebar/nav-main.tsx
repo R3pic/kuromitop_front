@@ -1,6 +1,6 @@
 "use client"
 
-import {MoreHorizontal, Pencil, Trash2} from 'lucide-react';
+import {MoreHorizontal, Trash2} from 'lucide-react';
 
 import {
   SidebarGroup,
@@ -22,6 +22,7 @@ import {Separator} from '@/components/ui/separator.tsx';
 import CreateBundleButton from '@/components/bundle/create-bundle-button.tsx';
 import {Bundle} from '@/types';
 import axiosInstance from '@/api/api.ts';
+import UpdateBundleDropdownItem from '@/components/bundle/update-bundle-dropdown-item.tsx';
 
 export function NavMain({
   bundles,
@@ -67,12 +68,9 @@ export function NavMain({
                 side={isMobile ? "bottom" : "right"}
                 align={isMobile ? "end" : "start"}
               >
-                <DropdownMenuItem>
-                  <Pencil className="text-muted-foreground" />
-                  <span>꾸러미 정보 수정</span>
-                </DropdownMenuItem>
+                <UpdateBundleDropdownItem bundle={item} />
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => onBundleDeleteClick(item.id)}>
+                <DropdownMenuItem onSelect={() => onBundleDeleteClick(item.id)}>
                   <Trash2 className="text-muted-foreground" />
                   <span>꾸러미 삭제</span>
                 </DropdownMenuItem>

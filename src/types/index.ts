@@ -32,6 +32,7 @@ export interface User {
 }
 
 export interface Bundle {
-  title: string;
   id: string;
+  title: string;
+  is_private: boolean;
 }
