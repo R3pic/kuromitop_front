@@ -36,7 +36,6 @@ export default function AxiosInterceptor() {
           console.info("API Response", res);
 
           if (res.status === 401) {
-            // 액세스 토큰 갱신 시도
             console.error("액세스 토큰이 만료되었습니다.");
             navigate.current('/');
           }

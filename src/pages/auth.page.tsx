@@ -2,6 +2,8 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs.tsx
 import LoginCard from '@/components/auth/login-card.tsx';
 import RegisterCard from '@/components/auth/register-card.tsx';
 import {PackageOpenIcon} from 'lucide-react';
+import {NavLink} from 'react-router';
+import axiosInstance from '@/api/api.ts';
 
 export default function AuthPage() {
   return (
@@ -22,6 +24,12 @@ export default function AuthPage() {
             <LoginCard />
           </TabsContent>
         </Tabs>
+        <NavLink to={'/home'} onClick={() => axiosInstance.post('/auth/login', {
+          username: 'testuser',
+          password: 'xptmxmdbwj!@'
+        })}>
+          <p className='text-blue-300 underline text-xs'>테스트계정으로 로그인하기</p>
+        </NavLink>
       </div>
   )
 }

@@ -1,13 +1,9 @@
 "use client"
 
 import {
-  BadgeCheck,
-  Bell,
   ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles,
-} from "lucide-react"
+  LogOut, Settings,
+} from 'lucide-react';
 
 import {
   Avatar,
@@ -60,8 +56,8 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user?.nickname}</span>
-                <span className="truncate text-xs">{user?.name}</span>
+                <span className="truncate font-semibold">{user?.nickname || user?.name}</span>
+                <span className="truncate text-xs text-muted-foreground">@{user?.name}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -79,37 +75,22 @@ export function NavUser({
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user?.nickname}</span>
-                  <span className="truncate text-xs">{user?.name}</span>
+                  <span className="truncate font-semibold">{user?.nickname || user?.name}</span>
+                  <span className="truncate text-xs text-muted-foreground">@{user?.name}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+                <Settings />
+                내 정보 변경
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={logout}>
               <LogOut />
-              Log out
+              로그아웃
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
