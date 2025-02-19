@@ -34,7 +34,7 @@ export default function BundlePage() {
         <h1 className='mr-auto scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
           { isPrivate ? '비공개 꾸러미' : title.current }
         </h1>
-        <NewTrackButton />
+        {!isPrivate && <NewTrackButton />}
       </div>
       <Separator className='mb-2'/>
       <div className='flex-1 h-[42rem] max-h-[36rem] overflow-y-scroll'>
