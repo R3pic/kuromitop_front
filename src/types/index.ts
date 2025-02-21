@@ -1,5 +1,5 @@
 export interface Auth {
-  userId: number;
+  userId: string;
   username: string;
 }
 
@@ -8,7 +8,7 @@ export interface TrackItem extends Track {
 }
 
 export interface Track {
-  owner: number;
+  owner: string;
   id: number;
   title: string;
   artist: string;
@@ -26,8 +26,9 @@ export interface RecentComment extends Comment {
 }
 
 export interface User {
-  name: string;
-  nickname: string;
+  id: string;
+  display_name: string;
+  introduction: string;
   thumbnail: string;
 }
 

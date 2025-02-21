@@ -7,6 +7,7 @@ import {Button} from '@/components/ui/button.tsx';
 import axiosInstance from '@/api/api.ts';
 import {useState} from 'react';
 import {Switch} from '@/components/ui/switch.tsx';
+import {useNavigate} from 'react-router';
 
 interface Props {
   callback?: () => void
@@ -22,6 +23,7 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function CreateBundleForm({ callback }: Props) {
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -41,6 +43,8 @@ export default function CreateBundleForm({ callback }: Props) {
     if (callback) {
       callback();
     }
+
+    navigate(0);
   }
 
   return (

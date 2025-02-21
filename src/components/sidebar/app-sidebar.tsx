@@ -25,11 +25,15 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
 
   useEffect(() => {
     async function fetch() {
-      const response = await axiosInstance.get('/users/me');
+      const response = await axiosInstance.get<{
+        user: User,
+        bundles: Bundle[],
+      }>('/users/me');
       const { user, bundles } = response.data;
+      console.log(user);
       authContext?.setAuth({
         userId: user.id,
-        username: user.name,
+        username: user.display_name,
       });
       setUser(user);
       setBundles(bundles);
