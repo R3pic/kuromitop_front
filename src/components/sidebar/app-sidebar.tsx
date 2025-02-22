@@ -66,7 +66,10 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain bundles={bundles}/>
+        <NavMain
+          bundles={bundles}
+          setBundles={setBundles}
+        />
       </SidebarContent>
       <SidebarFooter>
         {isGuest ? <NavGuest /> : <NavUser user={user}/>}

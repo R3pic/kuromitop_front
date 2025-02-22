@@ -26,8 +26,10 @@ import UpdateBundleDropdownItem from '@/components/bundle/update-bundle-dropdown
 
 export function NavMain({
   bundles,
+  setBundles,
 }: {
-  bundles: Bundle[]
+  bundles: Bundle[],
+  setBundles: (bundles: Bundle[]) => void;
 }) {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
@@ -37,7 +39,9 @@ export function NavMain({
     const response = await axiosInstance.delete(`bundles/${bundleId}`);
 
     if (response.status === 204) {
-      navigate(0);
+      const newBundles = bundles.filter((v) => v.id !== bundleId);
+      setBundles(newBundles);
+      navigate('/home');
     }
   }
 
