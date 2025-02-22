@@ -20,7 +20,10 @@ export default function CommentList({ comments }: Props) {
         {isOwner() && <NewCommentInput />}
         {comments.length > 0
           ? comments.map((comment, i) => (
-          <CommentCard key={i} comment={comment} />
+          <CommentCard
+            key={i}
+            comment={comment}
+          />
         )) : (
           <h4 className='scroll-m-20 text-xl font-semibold tracking-tight'>
             코멘트가 존재하지 않습니다.

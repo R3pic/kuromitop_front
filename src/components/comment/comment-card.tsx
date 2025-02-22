@@ -12,6 +12,9 @@ import {Button} from '@/components/ui/button.tsx';
 import {X} from 'lucide-react';
 import axiosInstance from '@/api/api.ts';
 import {useNavigate} from 'react-router';
+import {useContext} from 'react';
+import {AuthContext} from '@/context/user-context.ts';
+import {OwnerContext} from '@/context/owner-context.ts';
 
 interface Props {
   comment: Comment;
@@ -19,9 +22,11 @@ interface Props {
 
 export default function CommentCard({ comment }: Props) {
   const navigate = useNavigate();
-  async function deleteCommentClick() {
-    console.log('삭제 확인버튼 누름');
+  const authContext = useContext(AuthContext);
+  const ownerContext = useContext(OwnerContext);
 
+  const isOwner = () => authContext?.auth?.userId === ownerContext?.ownerId;
+  async function deleteCommentClick() {
     const response = await axiosInstance.delete(`/comments/${comment.id}`);
 
     if (response.status === 204) {
@@ -31,7 +36,7 @@ export default function CommentCard({ comment }: Props) {
 
   return (
     <Card className='relative w-1/2 p-2'>
-      <AlertDialog>
+      {isOwner() && <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button className='absolute right-1 top-1' variant='ghost' size='xs' >
             <X />
@@ -49,7 +54,7 @@ export default function CommentCard({ comment }: Props) {
             <AlertDialogAction onClick={deleteCommentClick}>확인</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog>}
       <p className='mb-2 leading-5 line-clamp-2 '>{ comment.content }</p>
       <p className='text-right text-xs text-muted-foreground'>{ formatDateString(comment.created_at) }</p>
     </Card>
