@@ -19,7 +19,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <div className='w-full p-4 h-[46rem]'>
+      <div className='w-full h-[45rem]'>
         <h2 className='scroll-m-20 border-b pb-2 mb-4 text-3xl font-semibold tracking-tight first:mt-0'>최근 발견된 메모</h2>
         <RecentTrackList tracks={tracks} />
       </div>

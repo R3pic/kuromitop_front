@@ -28,6 +28,8 @@ import {
 import {User} from '@/types';
 import {removeCookie} from '@/lib/cookie.ts';
 import {useNavigate} from 'react-router';
+import {useContext} from 'react';
+import {AuthContext} from '@/context/user-context.ts';
 
 export function NavUser({
   user,
@@ -36,9 +38,11 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
   function logout() {
     removeCookie('access_token');
     removeCookie('refresh_token');
+    authContext?.setAuth(null);
     localStorage.setItem('isGuest', 'true');
     navigate('/');
   }

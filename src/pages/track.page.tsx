@@ -30,16 +30,16 @@ export default function TrackPage() {
   return (
     <div className='flex flex-col w-full h-full p-4'>
       <div className='flex flex-col mb-4 space-y-2'>
-        <div className='flex '>
+        <div className='flex'>
           <Avatar className='rounded-none size-32 mr-2'>
             <AvatarImage className='object-cover aspect-square' src={track?.thumbnail} alt={'trackThumbnail'} />
             <AvatarFallback className="rounded-none">TN</AvatarFallback>
           </Avatar>
-          <div>
+          <div className='flex flex-col justify-between'>
             <h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
               { track?.title }
             </h1>
-            <p className='leading-7 [&:not(:first-child)]:mt-6'>{ track?.artist }</p>
+            <p className='text-md'>{ track?.artist }</p>
           </div>
         </div>
         <Separator />
