@@ -3,6 +3,13 @@ export interface Auth {
   username: string;
 }
 
+export interface SpotifyTrack {
+  id: string;
+  title: string;
+  artist: string;
+  thumbnail: string;
+}
+
 export interface TrackItem extends Track {
   recent_comment: RecentComment
 }
