@@ -2,17 +2,19 @@ import { PackageOpenIcon } from 'lucide-react';
 import SpotifyLoginButton from '@/components/auth/spotify-login-button.tsx';
 import {useEffect} from 'react';
 import axiosInstance from '@/api/api.ts';
-import {useNavigate} from 'react-router';
+import {NavLink, useNavigate} from 'react-router';
 
 export default function AuthPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
     async function isLogin() {
-      const res = await axiosInstance.post('/auth/login');
+      if (localStorage.getItem('isGuest') === 'false') {
+        const res = await axiosInstance.post('/auth/login');
 
-      if (res.status === 204)
-        navigate('/home');
+        if (res.status === 204)
+          navigate('/home');
+      }
     }
 
     void isLogin();
@@ -29,7 +31,7 @@ export default function AuthPage() {
       </div>
 
       {/* 소개글 */}
-      <div className="max-w-2xl text-center space-y-6">
+      <div className="mb-8 max-w-2xl text-center space-y-6">
         <h3 className="text-2xl font-semibold">음악을 꾸러미에 담다</h3>
         <p className="text-md">
           한때는 매일 듣던 노래, 어느 순간 잊혀진 멜로디.<br />
@@ -44,8 +46,11 @@ export default function AuthPage() {
       </div>
 
       {/* 로그인 버튼 */}
-      <div className="mt-8">
+      <div className="flex flex-col items-center justify-center space-y-4">
         <SpotifyLoginButton />
+        <NavLink to='/home' onClick={() => localStorage.setItem('isGuest', 'true')}>
+          <p className='text-muted-foreground text-sm underline underline-offset-2'>게스트로 입장하기</p>
+        </NavLink>
       </div>
     </div>
   );

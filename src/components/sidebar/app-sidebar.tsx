@@ -17,26 +17,30 @@ import axiosInstance from '@/api/api.ts';
 import {useContext, useEffect, useState} from 'react';
 import {Bundle, User} from '@/types';
 import {AuthContext} from '@/context/user-context.ts';
+import NavGuest from '@/components/sidebar/nav-guest.tsx';
 
 export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
   const authContext = useContext(AuthContext);
   const [user, setUser] = useState<User | null>(null);
   const [bundles, setBundles] = useState<Bundle[]>([]);
-
+  const isGuest = localStorage.getItem('isGuest') === 'true';
   useEffect(() => {
     async function fetch() {
-      const response = await axiosInstance.get<{
-        user: User,
-        bundles: Bundle[],
-      }>('/users/me');
-      const { user, bundles } = response.data;
-      console.log(user);
-      authContext?.setAuth({
-        userId: user.id,
-        username: user.display_name,
-      });
-      setUser(user);
-      setBundles(bundles);
+      if (localStorage.getItem('isGuest') === 'false') {
+        console.log('로그인 유저 정보 가져오기');
+        const response = await axiosInstance.get<{
+          user: User,
+          bundles: Bundle[],
+        }>('/users/me');
+        const { user, bundles } = response.data;
+        console.log(user);
+        authContext?.setAuth({
+          userId: user.id,
+          username: user.display_name,
+        });
+        setUser(user);
+        setBundles(bundles);
+      }
     }
 
     void fetch();
@@ -65,7 +69,7 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
         <NavMain bundles={bundles}/>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user}/>
+        {isGuest ? <NavGuest /> : <NavUser user={user}/>}
       </SidebarFooter>
     </Sidebar>
   )

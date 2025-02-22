@@ -10,11 +10,6 @@ export default function AxiosInterceptor() {
       (config) => {
         const accessToken = getCookie('access_token');
 
-        if (!accessToken) {
-          navigate.current('/');
-          return config;
-        }
-
         config.headers['Content-Type'] = 'application/json';
         config.headers['Authorization'] = `Bearer ${accessToken}`;
 

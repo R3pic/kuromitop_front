@@ -3,11 +3,12 @@ import {Button} from '@/components/ui/button.tsx';
 
 export default function SpotifyLoginButton() {
   async function onClick() {
+    localStorage.setItem('isGuest', 'false');
     window.location.href = 'http://localhost:3000/auth/spotify';
   }
 
   return (
-    <Button onClick={onClick}>
+    <Button className='cursor-pointer' onClick={onClick}>
       <Spotify />
       Spotify로 로그인하기
     </Button>

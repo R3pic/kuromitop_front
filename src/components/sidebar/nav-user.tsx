@@ -39,6 +39,7 @@ export function NavUser({
   function logout() {
     removeCookie('access_token');
     removeCookie('refresh_token');
+    localStorage.setItem('isGuest', 'true');
     navigate('/');
   }
 
