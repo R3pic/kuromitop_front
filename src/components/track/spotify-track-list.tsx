@@ -12,7 +12,7 @@ export default function SpotifyTrackList({ tracks }: Props) {
         <SpotifyTrackListItem key={i} track={track} />
       )) : (
         <h4 className='scroll-m-20 text-xl font-semibold tracking-tight'>
-          검색 목록이 없습니다.
+          검색 결과가 없습니다.
         </h4>
       )}
     </div>
