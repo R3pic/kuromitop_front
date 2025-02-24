@@ -32,16 +32,16 @@ export default function AuthPage() {
 
       {/* 소개글 */}
       <div className="mb-8 max-w-2xl text-center space-y-6">
-        <h3 className="text-2xl font-semibold">음악을 꾸러미에 담다</h3>
+        <h3 className="text-2xl font-semibold">음악을 모아, 기억을 쌓다</h3>
         <p className="text-md">
-          한때는 매일 듣던 노래, 어느 순간 잊혀진 멜로디.<br />
-          문득 흘러나온 소리에 그때의 공기, 감정, 순간들이 되살아난다.<br />
-          음악은 그렇게, 시간 속에 묻어둔 기억을 다시금 꺼내게 한다.
+          좋아했던 노래, 잊고 있던 멜로디.<br />
+          한 곡 한 곡이 당신만의 플레이리스트가 되고,<br />
+          시간이 지나도 다시 꺼내볼 수 있는 음악 기록이 됩니다.
         </p>
         <p className="text-md">
-          꾸러미에 당신만의 노래를 담아보세요.<br />
-          곡마다 남기는 메모는 과거의 나에게 보내는 편지처럼,<br />
-          언젠가 다시 펼쳐볼 작은 보물이 될 것입니다.
+          꾸러미탑에서 당신만의 음악 컬렉션을 만들어보세요.<br />
+          곡마다 남기는 메모와 함께, 그 순간의 감정을 기록하고<br />
+          나만의 플레이리스트를 완성하세요.
         </p>
       </div>
 
